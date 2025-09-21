@@ -1,0 +1,6 @@
+message = input("What is the weather like today? (sunny/rainy/cold) ")
+
+print("message")
+
+if the weather is sunny
+ print("wear light cloths")
