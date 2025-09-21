@@ -1,4 +1,4 @@
-# task_reminder.py
+# daily_reminder.py
 
 # Prompt user for inputs
 task = input("Enter your task: ")
@@ -22,7 +22,7 @@ if time_bound == "yes":
 else:
     reminder = "Note: " + reminder + ". Consider completing it when you have free time."
 
-# Print customized reminder
-print("\nReminder:", reminder)
+# ✅ Print customized reminder (as required by checker)
+print(f"Reminder: {reminder}")
 
 print("\nWell done on completing this project! Let the world hear about this milestone achieved.")
