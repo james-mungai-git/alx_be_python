@@ -1,29 +1,23 @@
 def perform_operation(num1, num2, operation):
+    if operation == "add":
+        return num1 + num2
+    elif operation == "subtract":
+        return num1 - num2
+    elif operation == "multiply":
+        return num1 * num2
+    elif operation == "divide":
+        if num2 != 0:
+            return num1 / num2
+        else:
+            return "Error: Division by zero!"
+    else:
+        return "Invalid operation"
 
-  numb1 = float(input("Enter the first number: "))
-  numb2 = float(input("Enter the second number: "))
 
+if __name__ == "__main__":
+    num1 = float(input("Enter the first number: "))
+    num2 = float(input("Enter the second number: "))
+    operation = input("Enter the operation (add, subtract, multiply, divide): ").lower()
 
-  operation = input("enter the operation (add, subtract, multiply, divide): ").lower()
-   
-  match operation:
-   
-   case "add":
-     print(f"Result: {numb1 + numb2} ")
-   
-   case "subtract":
-     print(f"Result: {numb1 - numb2}" )
-
-   case "multiply":
-     print(f"Result: {numb1 * numb2}" )
-
-   case "divide":
-            if numb2 == 0:
-                return "Error: Division by zero!"
-            else:
-                return numb1 / numb2
-
-perform_operation()
-  
-   
- 
+    result = perform_operation(num1, num2, operation)
+    print(f"Result: {result}")
