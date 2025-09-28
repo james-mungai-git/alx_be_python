@@ -1,4 +1,5 @@
-def perform_operation ():
+def perform_operation(num1, num2, operation):
+
   numb1 = float(input("Enter the first number: "))
   numb2 = float(input("Enter the second number: "))
 
