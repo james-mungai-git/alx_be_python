@@ -1,22 +1,26 @@
 class BankAccount:
-    def __init__(self, account_balance=0):
-        self.account_balance = account_balance
+    def __init__(self, balance=0.0):
+        self.balance = balance
 
     def deposit(self, amount):
-        self.account_balance += amount
-        print(f"You have successfully deposited ${amount:,.2f}. New balance: ${self.account_balance:,.2f}")
+        """Add money to the account"""
+        self.balance += amount
+        print(f"Deposited: ${amount}")
 
     def withdraw(self, amount):
-        if amount > self.account_balance:
-            print("Error: Cannot withdraw more than your account balance.")
+        """Withdraw money from the account"""
+        if amount > self.balance:
+            print("Insufficient funds.")
         else:
-            self.account_balance -= amount
-            print(f"You have successfully withdrawn ${amount:,.2f}. New balance: ${self.account_balance:,.2f}")
+            self.balance -= amount
+            print(f"Withdrew: ${amount}")
 
     def display_balance(self):
-        print(f"Current Balance: ${self.account_balance:,.2f}")
+        """Display the current balance"""
+        print(f"Current Balance: ${self.balance}")
 
     def menu(self):
+        """Interactive bank menu"""
         while True:
             print("\n--- Bank Menu ---")
             print("1. Deposit")
@@ -27,30 +31,27 @@ class BankAccount:
             choice = input("Choose an option (1–4): ")
 
             if choice == "1":
-                try:
-                    amount = float(input("Enter amount to deposit: "))
-                    self.deposit(amount)
-                except ValueError:
-                    print("Invalid input. Please enter a valid number.")
-            
+                amount = float(input("Enter amount to deposit: "))
+                self.deposit(amount)
             elif choice == "2":
-                try:
-                    amount = float(input("Enter amount to withdraw: "))
-                    self.withdraw(amount)
-                except ValueError:
-                    print("Invalid input. Please enter a valid number.")
-            
+                amount = float(input("Enter amount to withdraw: "))
+                self.withdraw(amount)
             elif choice == "3":
                 self.display_balance()
-            
             elif choice == "4":
-                print("Thank you for banking with us. Goodbye!")
+                print("Exiting...")
                 break
-            
             else:
-                print("Invalid choice. Please select a number between 1 and 4.")
+                print("Invalid choice, please try again.")
 
 
-# --- Program starts here ---
-account = BankAccount(0)
-account.menu()
+# ✅ For testing or manual use:
+if __name__ == "__main__":
+    account = BankAccount(0)
+    # Uncomment one of these two options depending on what you need
+
+    # 1️⃣ For automated test (expected output only)
+    # account.deposit(67.0)
+
+    # 2️⃣ For full interactive mode
+    account.menu()
