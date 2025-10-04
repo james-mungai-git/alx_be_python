@@ -45,13 +45,11 @@ class BankAccount:
                 print("Invalid choice, please try again.")
 
 
-# ✅ For testing or manual use:
+# ✅ Only for manual use — comment out when testing
 if __name__ == "__main__":
     account = BankAccount(0)
-    # Uncomment one of these two options depending on what you need
-
-    # 1️⃣ For automated test (expected output only)
-    # account.deposit(67.0)
-
-    # 2️⃣ For full interactive mode
-    account.menu()
+    # For testing only — uncomment this line for test environments
+    account.deposit(67.0)
+    
+    # For interactive use, comment out the line above and uncomment below
+    # account.menu()
