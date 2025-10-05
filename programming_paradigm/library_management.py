@@ -1,88 +1,106 @@
-class Book:
-    def __init__(self, title, author):
-        self.title = title
-        self.author = author
-        self._is_checked_out = False
+class books:
+	def __init__(self, title, author):
+		self.title = title
+		self.author = author
+		self._is_checked_out = False
 
-    def check_out(self):
-        self._is_checked_out = True
+class library:
+	def __init__(self):
+		self._books = []
 
-    def is_available(self):
-        return not self._is_checked_out
+	def add_book(self, title, author):
+		for book in self._books:
+			if book.title.lower() == title.lower() and book.author.lower() == author.lower():
+				print(f"{book.title} by {book.author} already exists in the library list")
+				return
+		self._books.append(books(title, author))
+		print(f"added {title} by {author} to library")
 
-    def __str__(self):
-        status = "Available" if self.is_available() else "Checked out"
-        return f"{self.title} by {self.author} - {status}"
+	def check_out_book(self, title, author):
+		for book in self._books:
+			if book.title.lower() == title.lower() and book.author.lower() == author.lower():
+				if book._is_checked_out:
+					print(f"{title} has already been checked out")
+					return
+				book._is_checked_out = True
+				print(f"{title} by {author} has been checked out")
+				return
+		print(f"{title} by {author} not found in the library")
+	
+	def return_book(self, title, author):
+		for book in self._books:
+			if book.title.lower() == title.lower() and book.author.lower() == author.lower():
+				if not book._is_checked_out:
+					print(f"{title} had not been checked out")
+					return
+				book._is_checked_out = False
+				print(f"{title} has been returned")
+				return
+		print(f"{title} was not found in the library")
 
+	def list_available_books(self):
+		if not self._books:
+			print("list is empty")
+			return
+		for index, book in enumerate(self._books, start=1):
+			status = "checked out" if book._is_checked_out else "available"
+			print(f"{index}. {book.title} by {book.author} - {status}")
+			
+	def library_menu(self):
+		print("\n ---library menu---")
+		print("1. Add book")
+		print("2. Check out book")
+		print("3. return a book")
+		print("4. View library list")
+		print("5. Exit")
+		
+# main loop
 
-class Library:
-    def __init__(self):
-        self._books = []
+# ...existing code...
 
-    def add_book(self, title, author):
-        for book in self._books:
-            if book.title.lower() == title.lower() and book.author.lower() == author.lower():
-                print("This book already exists in the library.")
-                return
-        self._books.append(Book(title, author))
-        print(f"{title} by {author} has been added to the library.")
-
-    def check_out_book(self, title):
-        for book in self._books:
-            if book.title.lower() == title.lower():
-                if book.is_available():
-                    book.check_out()
-                    print(f"{title} has been checked out.")
-                    return
-                else:
-                    print(f"{title} is already checked out.")
-                    return
-        print("Book not found in the library.")
-
-    def display_books(self):
-        if not self._books:
-            print("Library is empty.")
-        else:
-            print("\nBooks in the library:")
-            for book in self._books:
-                print(book)
-
-    def show_menu(self):
-        print("\nLibrary Manager")
-        print("1. Add book")
-        print("2. Check out book")
-        print("3. View library list")
-        print("4. Exit")
-
-
-# -------------------------
-# Main Program Loop
-# -------------------------
 def main():
-    lib = Library()
+    lib = library()
+    
     while True:
-        lib.show_menu()
-        choice = input("Enter a number between 1-4: ")
+        lib.library_menu()
+        choice = input("Pick a number between 1 and 5: ")
 
         if choice == "1":
-            title = input("Enter book title: ")
-            author = input("Enter author name: ")
+            title = input("Enter the title of the book you wish to add: ")
+            author = input("Enter the name of the author: ")
             lib.add_book(title, author)
 
         elif choice == "2":
-            title = input("Enter book title to check out: ")
-            lib.check_out_book(title)
+            title = input("Enter the title of the book you wish to check out: ")
+            author = input("Enter the name of the author: ")
+            lib.check_out_book(title, author)
 
         elif choice == "3":
-            lib.display_books()
+            title = input("Enter the title of the book you wish to return: ")
+            author = input("Enter the name of the author: ")
+            lib.return_book(title, author)
 
         elif choice == "4":
-            print("Thank you for using the Library Manager. Goodbye!")
+            lib.list_available_books()  # fixed: added parentheses to call the method
+
+        elif choice == "5":
+            print("Thank you for using our services, come again!")
             break
 
         else:
-            print("Invalid choice. Please enter a number between 1 and 4.")
+            print("Invalid input, kindly enter again")
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # fixed: corrected __name__ check
     main()
 
+				
+			
+
+
+
+
+    			
+
+
+
+				
