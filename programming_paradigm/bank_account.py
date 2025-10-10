@@ -44,8 +44,3 @@ class BankAccount:
             else:
                 print("Invalid choice, please try again.")
 
-
-# ⚠️ Remove or comment this block to avoid duplicate output in tests
-# if __name__ == "__main__":
-#     account = BankAccount(0)
-#     account.deposit(67.0)
